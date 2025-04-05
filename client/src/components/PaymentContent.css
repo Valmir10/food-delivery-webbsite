@@ -1,0 +1,638 @@
+.payment-content-container {
+  height: 88%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+/*payment-input-information-container Left SIDE */
+.payment-input-information-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-input-information {
+  height: 90%;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 3%;
+}
+
+.pay-with-card-p-container {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pay-with-card-p-container p {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.phone-label-container,
+.city-zip-kode-container,
+.card-number-label-container,
+.mm-yy-cvc-container,
+.card-holder-label-container {
+  height: 11%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.phone-label-container,
+.card-number-label-container,
+.card-holder-label-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.city-zip-kode-container,
+.mm-yy-cvc-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+}
+
+.input-header-text {
+  width: 100% !important;
+  height: 30% !important;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.input-wrapper {
+  width: 100%;
+  height: 70%;
+  position: relative;
+}
+
+.input-wrapper input {
+  height: 100% !important;
+  width: 100%;
+}
+
+.visacard-mastercard-container {
+  position: absolute;
+  right: 2%;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+}
+
+.visacard-image-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mastercard-image-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visacard-image-container img,
+.mastercard-image-container img {
+  height: 70%;
+  width: 70%;
+}
+
+.input-header-text p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: gray;
+}
+
+.phone-label-container,
+.card-number-label-container,
+.card-holder-label-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-label-container input,
+.city-label-container input,
+.zip-kode-label-container input,
+.mm-yy-label-container input,
+.cvc-label-container input,
+.card-holder-label-container input {
+  width: 100% !important;
+  height: 70% !important;
+}
+
+.city-label-container,
+.zip-kode-label-container,
+.mm-yy-label-container,
+.cvc-label-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.city-label-container,
+.zip-kode-label-container,
+.mm-yy-label-container,
+.cvc-label-container {
+  height: 100%;
+  width: 50%;
+}
+
+.card-holder-label-container {
+  margin-bottom: 3%;
+}
+
+.payment-input-information input {
+  font-style: normal;
+  border: 1px rgb(197, 195, 195) solid;
+  border-radius: 5px;
+  outline: none;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.pay-button-container-payment {
+  width: 100%;
+  height: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pay-button-container-payment button {
+  width: 100%;
+  height: 100%;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 1s, color 1s;
+  font-size: 14px;
+}
+
+.pay-button-container-payment button:hover {
+  transition: 0.5s;
+  opacity: 0.8;
+}
+
+.pay-button-container-payment button:active {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+/*Loading animation*/
+
+.loading-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-overlay.active {
+  display: flex;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.checkmark-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkmark-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #4caf50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkmark {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/*payment-products-summary-container Right side */
+
+.payment-products-summary-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-products-summary {
+  height: 70%;
+  width: 60%;
+  background-color: white;
+  border: 0.5px solid gray;
+}
+
+.cart-summary-text-container {
+  width: 100%;
+  height: 15%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-summary-text-container h1 {
+  font-size: 30px;
+}
+
+.menu-items-summary-container {
+  height: 75%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+  overflow-y: auto;
+  max-height: 75%;
+}
+
+.menu-items-summary-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu-items-summary-container::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 3px;
+}
+
+.menu-items-summary {
+  height: 17%;
+  width: 93%;
+  margin-left: 4%;
+  border-bottom: 0.5px solid gray;
+  min-height: 17%;
+}
+
+.menu-items-summary-container:has(.menu-items-summary:nth-child(5))
+  .menu-items-summary:last-child {
+  border-bottom: none;
+}
+
+.item-name-price-container {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.quantity-text-container {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.item-name-container {
+  width: 50%;
+  height: 100%;
+}
+
+.item-price-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.quantity-amount-container {
+  width: 50%;
+  height: 100%;
+}
+
+.quantity-text-2 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item-price-container p,
+.quantity-text-2 p {
+  margin-right: 7%;
+}
+
+.quantity-amount-container p,
+.item-name-container p {
+  margin-left: 5%;
+}
+
+.quantity-amount-container p,
+.quantity-text-2 p {
+  color: gray;
+}
+
+.item-name-container p,
+.item-price-container p {
+  font-weight: bold;
+}
+
+.total-price-container {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  border-top: 0.5px solid gray;
+}
+
+.total-price-container p {
+  margin-left: 5%;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1200px) and (max-height: 800px) {
+  .payment-products-summary {
+    height: 75%;
+    width: 65%;
+  }
+
+  .input-header-text p {
+    font-size: 14px;
+  }
+
+  .visacard-image-container img,
+  .mastercard-image-container img {
+    height: 75%;
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 1024px) and (max-height: 720px) {
+  .item-name-container p {
+    font-size: 15px;
+  }
+
+  .item-name-container {
+    width: 70%;
+  }
+
+  .item-price-container {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 900px) and (max-height: 1600px) {
+  .payment-input-information-container {
+    justify-content: flex-end;
+  }
+
+  .payment-input-information {
+    height: 60%;
+    width: 90%;
+  }
+
+  .payment-products-summary {
+    height: 60%;
+    width: 80%;
+    margin-left: 5%;
+  }
+
+  .visacard-image-container img,
+  .mastercard-image-container img {
+    height: 80%;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 800px) and (max-height: 1400px) {
+  .payment-content-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 110vh;
+  }
+
+  .payment-input-information-container {
+    width: 100%;
+    height: 50vh;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .payment-products-summary-container {
+    width: 100%;
+    height: 50vh;
+    align-items: flex-start;
+  }
+
+  .payment-input-information {
+    height: 85%;
+    width: 60%;
+  }
+
+  .payment-products-summary {
+    height: 100%;
+    width: 60%;
+  }
+  .input-header-text p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) and (max-height: 1280px) {
+  .payment-content-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 120vh;
+  }
+
+  .payment-input-information {
+    height: 90%;
+  }
+
+  .phone-label-container,
+  .city-zip-kode-container,
+  .card-number-label-container,
+  .mm-yy-cvc-container,
+  .card-holder-label-container {
+    height: 14%;
+  }
+
+  .payment-products-summary-container {
+    height: 57vh;
+  }
+
+  .payment-products-summary {
+    height: 95%;
+    width: 60%;
+    margin-top: 5%;
+  }
+  .payment-input-information-container {
+    height: 55vh;
+  }
+  .pay-button-container-payment {
+    height: 10%;
+  }
+}
+
+@media screen and (max-width: 600px) and (max-height: 960px) {
+  .payment-content-container {
+    min-height: 125vh;
+  }
+
+  .payment-products-summary-container {
+    height: 61vh;
+  }
+
+  .payment-input-information-container {
+    height: 60vh;
+  }
+
+  .payment-input-information {
+    width: 65%;
+  }
+
+  .payment-products-summary {
+    width: 65%;
+  }
+  .pay-button-container-payment {
+    height: 10%;
+  }
+}
+
+@media screen and (max-width: 480px) and (max-height: 850px) {
+  .payment-content-container {
+    min-height: 140vh;
+  }
+
+  .payment-input-information {
+    width: 75%;
+  }
+
+  .payment-products-summary {
+    width: 75%;
+  }
+  .payment-products-summary-container {
+    height: 67vh;
+  }
+
+  .payment-input-information-container {
+    height: 67vh;
+  }
+
+  .item-name-container {
+    width: 70%;
+  }
+
+  .item-price-container {
+    width: 30%;
+  }
+  .pay-button-container-payment {
+    height: 10%;
+  }
+}
+
+@media screen and (max-width: 414px) and (max-height: 750px) {
+  .payment-content-container {
+    min-height: 160vh;
+  }
+  .payment-products-summary-container {
+    height: 75vh;
+  }
+
+  .payment-input-information-container {
+    height: 75vh;
+  }
+
+  .phone-label-container,
+  .city-zip-kode-container,
+  .card-number-label-container,
+  .mm-yy-cvc-container,
+  .card-holder-label-container {
+    height: 16%;
+  }
+
+  .visacard-image-container img,
+  .mastercard-image-container img {
+    height: 85%;
+    width: 85%;
+  }
+  .pay-button-container-payment {
+    height: 11%;
+  }
+}
+
+@media screen and (max-width: 375px) and (max-height: 640px) {
+  .payment-content-container {
+    min-height: 165vh;
+  }
+  .payment-products-summary-container {
+    height: 83vh;
+  }
+
+  .payment-input-information-container {
+    height: 83vh;
+  }
+
+  .payment-products-summary {
+    width: 85% !important;
+    height: 90% !important;
+  }
+  .payment-input-information {
+    width: 85% !important;
+  }
+
+  .item-name-container p {
+    font-size: 15px;
+    margin-left: 3.7%;
+  }
+}
+
+@media screen and (max-width: 360px) and (max-height: 640px) {
+  .payment-products-summary {
+    width: 90% !important;
+    margin-right: 3%;
+  }
+  .payment-input-information {
+    width: 90% !important;
+  }
+  .visacard-image-container img,
+  .mastercard-image-container img {
+    height: 90%;
+    width: 90%;
+  }
+}

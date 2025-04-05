@@ -1,0 +1,568 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.welcome-section-container {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/*LEFT*/
+
+.welcome-text-container {
+  height: 100%;
+  width: 100%;
+  background-color: #eee8db;
+  position: relative;
+}
+
+.welcome-text-1,
+.welcome-text-2 {
+  font-family: "Roboto", system-ui;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 40px;
+}
+
+.welcome-text-1 {
+  position: absolute;
+  left: 200px;
+  top: 100px;
+}
+
+.welcome-text-2 {
+  position: absolute;
+  left: 200px;
+  top: 160px;
+}
+
+.welcome-text-3 {
+  position: absolute;
+  left: 200px;
+  top: 220px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: 3px;
+}
+
+.searchbox-container {
+  position: absolute;
+  left: 200px;
+  top: 300px;
+  width: 450px;
+  height: 65px;
+  transition: height 0.5s ease;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.searchbox-container.expanded {
+  height: 200px;
+  z-index: 100;
+}
+
+.searchbox-container input {
+  height: 65px;
+  width: 65%;
+  border-radius: 30px;
+  border: none;
+  /*nya*/
+  border: none;
+  padding-left: 20px;
+  outline: none;
+  transition: border-color 0.3s;
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.searchbox-container input::placeholder {
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+}
+
+.find-food-button {
+  height: 65px;
+  width: 35%;
+  border: none;
+  background-color: red;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: background-color 1s, color 1s;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.find-food-button:hover {
+  transition: 0.5s;
+  opacity: 0.8;
+}
+
+.find-food-button:active {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.search-results {
+  position: absolute;
+  left: 0px;
+  top: 60px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.option-div {
+  padding: 5px;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.option-div.highlighted {
+  background-color: #f0f0f0;
+}
+
+.option-div:hover {
+  background-color: #f0f0f0;
+}
+
+/*RIGHT*/
+
+.welcome-image-container {
+  width: 50%;
+  height: 100%;
+  background-color: red;
+  position: relative;
+}
+
+.welcome-image-1 {
+  height: 46%;
+  width: 18%;
+  border-radius: 50%;
+  position: absolute;
+  right: 240px;
+  top: 130px;
+}
+
+.welcome-image-2 {
+  height: 30%;
+  width: 13%;
+  border-radius: 50%;
+  position: absolute;
+  right: 530px;
+  top: 10px;
+}
+
+.welcome-image-3 {
+  height: 30%;
+  width: 13%;
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+
+.welcome-image-4 {
+  height: 30%;
+  width: 13%;
+  border-radius: 50%;
+  position: absolute;
+  right: 530px;
+  bottom: 10px;
+}
+
+.welcome-image-5 {
+  height: 30%;
+  width: 13%;
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+/*Media screen*/
+
+@media screen and (max-width: 1470px) and (max-height: 930px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 170px;
+  }
+}
+
+@media screen and (max-width: 1366px) and (max-height: 900px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 140px;
+  }
+}
+
+@media screen and (max-width: 1200px) and (max-height: 800px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 110px;
+  }
+
+  .welcome-image-1 {
+    height: 46%;
+    width: 18%;
+
+    right: 170px;
+    top: 130px;
+  }
+
+  .welcome-image-2 {
+    height: 30%;
+    width: 13%;
+
+    right: 380px;
+    top: 10px;
+  }
+
+  .welcome-image-3 {
+    height: 30%;
+    width: 13%;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+  }
+
+  .welcome-image-4 {
+    height: 30%;
+    width: 13%;
+
+    right: 380px;
+    bottom: 10px;
+  }
+
+  .welcome-image-5 {
+    height: 30%;
+    width: 13%;
+
+    right: 20px;
+    top: 10px;
+  }
+}
+
+@media screen and (max-width: 1024px) and (max-height: 720px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 40px;
+  }
+
+  .welcome-image-1 {
+    height: 42%;
+    width: 18%;
+
+    right: 160px;
+    top: 130px;
+  }
+
+  .welcome-image-2 {
+    height: 30%;
+    width: 13%;
+
+    right: 360px;
+    top: 10px;
+  }
+
+  .welcome-image-3 {
+    height: 30%;
+    width: 13%;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+  }
+
+  .welcome-image-4 {
+    height: 30%;
+    width: 13%;
+
+    right: 360px;
+    bottom: 10px;
+  }
+
+  .welcome-image-5 {
+    height: 30%;
+    width: 13%;
+
+    right: 20px;
+    top: 10px;
+  }
+}
+
+@media screen and (max-width: 900px) and (max-height: 1600px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 270px;
+  }
+  .welcome-image-1 {
+    display: none;
+    height: 30%;
+    width: 18%;
+
+    right: 140px;
+    top: 130px;
+  }
+
+  .welcome-image-2 {
+    height: 21%;
+    width: 12%;
+
+    left: 10px;
+    top: 10px;
+  }
+
+  .welcome-image-3 {
+    height: 21%;
+    width: 12%;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+  }
+
+  .welcome-image-4 {
+    height: 21%;
+    width: 12%;
+
+    left: 10px;
+    bottom: 10px;
+  }
+
+  .welcome-image-5 {
+    height: 21%;
+    width: 12%;
+
+    right: 20px;
+    top: 10px;
+  }
+}
+
+@media screen and (max-width: 800px) and (max-height: 1400px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) and (max-height: 1280px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 180px;
+  }
+}
+
+@media screen and (max-width: 720px) and (max-height: 1080px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 160px;
+  }
+
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 18%;
+    width: 13%;
+  }
+}
+
+@media screen and (max-width: 600px) and (max-height: 960px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 140px;
+  }
+
+  .welcome-text-3 {
+    letter-spacing: 0.5px;
+  }
+
+  .searchbox-container {
+    width: 370px;
+    height: 65px;
+  }
+
+  .searchbox-container input {
+    height: 65px;
+    width: 65%;
+  }
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 18%;
+    width: 15%;
+  }
+  .welcome-image-3,
+  .welcome-image-5 {
+    right: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) and (max-height: 850px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 120px;
+  }
+
+  .welcome-text-1,
+  .welcome-text-2 {
+    font-size: 35px;
+  }
+
+  .welcome-text-3 {
+    letter-spacing: 0px;
+    font-size: 17px;
+  }
+
+  .welcome-text-3 p {
+    font-size: 17px;
+  }
+  .searchbox-container {
+    width: 300px;
+    height: 65px;
+  }
+
+  .searchbox-container input {
+    padding-left: 10px;
+    font-size: 13px;
+  }
+
+  .searchbox-container input::placeholder {
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+  }
+
+  .find-food-button {
+    height: 65px;
+    width: 40%;
+    font-size: 13px;
+  }
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 17%;
+    width: 16%;
+  }
+  .welcome-image-3,
+  .welcome-image-5 {
+    right: 10px;
+  }
+}
+
+@media screen and (max-width: 414px) and (max-height: 750px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 85px;
+  }
+
+  .welcome-text-3 p {
+    font-size: 15px;
+  }
+
+  .searchbox-container {
+    width: 270px;
+    height: 65px;
+  }
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 15%;
+    width: 18%;
+  }
+}
+
+@media screen and (max-width: 375px) and (max-height: 640px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 60px;
+  }
+
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 16%;
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 360px) and (max-height: 640px) {
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 17%;
+    width: 21%;
+  }
+}
+
+@media screen and (max-width: 320px) and (max-height: 640px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 50px;
+  }
+
+  .searchbox-container {
+    width: 240px;
+  }
+
+  .welcome-text-3 {
+    font-size: 15px;
+  }
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 16%;
+    width: 24%;
+  }
+}
