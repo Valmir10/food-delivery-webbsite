@@ -268,6 +268,56 @@
   }
 }
 
+@media screen and (max-width: 1024px) and (max-height: 768px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 40px;
+  }
+
+  .welcome-image-1 {
+    height: 42%;
+    width: 18%;
+
+    right: 160px;
+    top: 130px;
+  }
+
+  .welcome-image-2 {
+    height: 30%;
+    width: 13%;
+
+    right: 360px;
+    top: 10px;
+  }
+
+  .welcome-image-3 {
+    height: 30%;
+    width: 13%;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+  }
+
+  .welcome-image-4 {
+    height: 30%;
+    width: 13%;
+
+    right: 360px;
+    bottom: 10px;
+  }
+
+  .welcome-image-5 {
+    height: 30%;
+    width: 13%;
+
+    right: 20px;
+    top: 10px;
+  }
+}
+
 @media screen and (max-width: 1024px) and (max-height: 720px) {
   .welcome-text-1,
   .welcome-text-2,
@@ -437,6 +487,114 @@
   }
 }
 
+@media screen and (max-width: 428px) and (max-height: 926px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 90px;
+  }
+
+  .welcome-text-1,
+  .welcome-text-2 {
+    font-size: 35px;
+  }
+
+  .welcome-text-3 {
+    letter-spacing: 0px;
+    font-size: 17px;
+  }
+
+  .welcome-text-3 p {
+    font-size: 17px;
+  }
+  .searchbox-container {
+    width: 300px;
+    height: 65px;
+  }
+
+  .searchbox-container input {
+    padding-left: 10px;
+    font-size: 13px;
+  }
+
+  .searchbox-container input::placeholder {
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+  }
+
+  .find-food-button {
+    height: 65px;
+    width: 40%;
+    font-size: 13px;
+  }
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 17%;
+    width: 16%;
+  }
+  .welcome-image-3,
+  .welcome-image-5 {
+    right: 10px;
+  }
+}
+
+@media screen and (max-width: 412px) and (max-height: 915px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 90px;
+  }
+
+  .welcome-text-1,
+  .welcome-text-2 {
+    font-size: 35px;
+  }
+
+  .welcome-text-3 {
+    letter-spacing: 0px;
+    font-size: 17px;
+  }
+
+  .welcome-text-3 p {
+    font-size: 17px;
+  }
+  .searchbox-container {
+    width: 300px;
+    height: 65px;
+  }
+
+  .searchbox-container input {
+    padding-left: 10px;
+    font-size: 13px;
+  }
+
+  .searchbox-container input::placeholder {
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+  }
+
+  .find-food-button {
+    height: 65px;
+    width: 40%;
+    font-size: 13px;
+  }
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 17%;
+    width: 16%;
+  }
+  .welcome-image-3,
+  .welcome-image-5 {
+    right: 10px;
+  }
+}
+
 @media screen and (max-width: 480px) and (max-height: 850px) {
   .welcome-text-1,
   .welcome-text-2,
@@ -491,7 +649,8 @@
   }
 }
 
-@media screen and (max-width: 414px) and (max-height: 750px) {
+@media screen and (max-width: 414px) and (max-height: 750px),
+  screen and (max-width: 430px) and (max-height: 932px) {
   .welcome-text-1,
   .welcome-text-2,
   .welcome-text-3,
@@ -513,6 +672,41 @@
   .welcome-image-5 {
     height: 15%;
     width: 18%;
+  }
+}
+
+@media screen and (max-width: 390px) and (max-height: 884px),
+  screen and (max-width: 393px) and (max-height: 851px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 60px;
+  }
+
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 16%;
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 375px) and (max-height: 667px) {
+  .welcome-text-1,
+  .welcome-text-2,
+  .welcome-text-3,
+  .searchbox-container {
+    left: 60px;
+  }
+
+  .welcome-image-3,
+  .welcome-image-2,
+  .welcome-image-4,
+  .welcome-image-5 {
+    height: 16%;
+    width: 20%;
   }
 }
 

@@ -231,7 +231,7 @@ const DeliveryDetails = () => {
 
                 <div className="food-processing-text-container">
                   <div className="food-text-content">
-                    <p>Food Processing</p>
+                    <p>Processing</p>
                   </div>
 
                   <div className="food-text-tooltip-container">
@@ -294,7 +294,7 @@ const DeliveryDetails = () => {
 
                 <div className="food-processing-text-container">
                   <div className="food-text-content">
-                    <p>Food Delivered</p>
+                    <p>Delivered</p>
                   </div>
 
                   <div className="food-text-tooltip-container">

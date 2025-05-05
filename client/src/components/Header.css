@@ -812,7 +812,10 @@
   }
 }
 
-@media screen and (max-width: 414px) and (max-height: 750px) {
+@media screen and (max-width: 414px) and (max-height: 750px),
+  screen and (max-width: 412px) and (max-height: 915px),
+  screen and (max-width: 428px) and (max-height: 926px),
+  screen and (max-width: 430px) and (max-height: 932px) {
   .right-section-header {
     margin-right: 5px;
   }
@@ -846,6 +849,68 @@
   .tooltip-cart {
     top: 7px;
     right: 3px;
+  }
+}
+
+@media screen and (max-width: 390px) and (max-height: 884px),
+  screen and (max-width: 393px) and (max-height: 851px) {
+  .company-name {
+    font-size: 27px !important;
+  }
+
+  .sign-up-form,
+  .sign-in-form,
+  .contact-us-form-container {
+    top: 23%;
+    left: 11%;
+  }
+
+  .sign-up-form {
+    height: 380px;
+    width: 330px;
+  }
+
+  .contact-us-form-container {
+    height: 380px;
+    width: 330px;
+  }
+
+  .sign-in-form {
+    height: 330px;
+    width: 300px;
+  }
+
+  .tooltip-cart {
+    top: 7px;
+    right: 3px;
+  }
+}
+
+@media screen and (max-width: 360px) and (max-height: 640px) {
+  .sign-in-form {
+    top: 25%;
+    left: 11%;
+  }
+
+  .sign-up-form,
+  .contact-us-form-container {
+    top: 25%;
+    left: 10%;
+  }
+
+  .sign-up-form {
+    height: 340px;
+    width: 290px;
+  }
+
+  .contact-us-form-container {
+    height: 340px;
+    width: 290px;
+  }
+
+  .sign-in-form {
+    height: 310px;
+    width: 280px;
   }
 }
 

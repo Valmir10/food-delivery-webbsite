@@ -310,7 +310,8 @@
   }
 }
 
-@media screen and (max-width: 1024px) and (max-height: 720px) {
+@media screen and (max-width: 1024px) and (max-height: 720px),
+  screen and (max-width: 1024px) and (max-height: 768px) {
   .row-1-column-1-container p,
   .row-1-column-2-container p,
   .row-1-column-3-container p,
@@ -347,6 +348,13 @@
   .row-6-column-5-container p,
   .row-6-column-6-container p {
     font-size: 12px;
+  }
+
+  .food-text-content p,
+  .price-order-text p,
+  .items-order-text p,
+  .timer-container p {
+    font-size: 12.5px;
   }
 }
 
@@ -593,9 +601,18 @@
   .timer-container p {
     font-size: 8.5px;
   }
+
+  .food-processing-tooltip,
+  .food-delivered-tooltip {
+    height: 9px;
+    width: 9px;
+  }
 }
 
-@media screen and (max-width: 480px) and (max-height: 850px) {
+@media screen and (max-width: 480px) and (max-height: 850px),
+  screen and (max-width: 412px) and (max-height: 915px),
+  screen and (max-width: 428px) and (max-height: 926px),
+  screen and (max-width: 430px) and (max-height: 932px) {
   .category-container p {
     font-size: 7px;
   }
@@ -627,7 +644,10 @@
   }
 }
 
-@media screen and (max-width: 375px) and (max-height: 640px) {
+@media screen and (max-width: 375px) and (max-height: 640px),
+  screen and (max-width: 375px) and (max-height: 667px),
+  screen and (max-width: 393px) and (max-height: 851px),
+  screen and (max-width: 390px) and (max-height: 844px) {
   .food-text-content,
   .food-text-tooltip-container,
   .food-processing-text-container {
@@ -637,7 +657,6 @@
   .my-order-information,
   .previous-order-information {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    background-color: red;
   }
 
   .more-button-container button {

@@ -534,6 +534,20 @@
   }
 }
 
+@media screen and (max-width: 430px) and (max-height: 932px),
+  screen and (max-width: 412px) and (max-height: 915px),
+  screen and (max-width: 428px) and (max-height: 926px) {
+  .payment-products-summary {
+    width: 75%;
+
+    margin-right: 3%;
+  }
+
+  .payment-input-information {
+    width: 75%;
+  }
+}
+
 @media screen and (max-width: 480px) and (max-height: 850px) {
   .payment-content-container {
     min-height: 140vh;
@@ -596,7 +610,12 @@
   }
 }
 
-@media screen and (max-width: 375px) and (max-height: 640px) {
+/* @media screen and (max-width: 375px) and (max-height: 667px) {} */
+
+@media screen and (max-width: 375px) and (max-height: 640px),
+  screen and (max-width: 375px) and (max-height: 667px),
+  screen and (max-width: 393px) and (max-height: 851px),
+  screen and (max-width: 390px) and (max-height: 844px) {
   .payment-content-container {
     min-height: 165vh;
   }
@@ -611,6 +630,8 @@
   .payment-products-summary {
     width: 85% !important;
     height: 90% !important;
+
+    margin-right: 4%;
   }
   .payment-input-information {
     width: 85% !important;
