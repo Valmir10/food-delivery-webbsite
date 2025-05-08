@@ -188,7 +188,7 @@ const Header = ({ scrollToMenu, scrollToHome }) => {
                 </div>
               </div>
               <div className="container-2-personal-information">
-                <label for="your-name" className="name-label-container">
+                <label htmlFor="your-name" className="name-label-container">
                   <input
                     id="your-name"
                     className="your-name-box"

@@ -1,11 +1,8 @@
 // Menu.jsx
 
-// Menu.jsx
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Menu.css";
-// import Filter from "./Filter";
 import { useOrder } from "./OrderContent";
 import { useAuth } from "../hooks/useAuth";
 
@@ -59,39 +56,43 @@ const Menu = ({ selectedCategory, resetCategory, isFilterActive }) => {
       return;
     }
 
+    // Prepare updated cart array
     const updatedCart = state.order.map((item) =>
       item._id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
-
     const existingItem = state.order.find((item) => item._id === id);
     if (!existingItem) {
       updatedCart.push({ ...product, quantity: 1 });
     }
 
+    // Update local state and storage
+    const newQty = existingItem ? existingItem.quantity + 1 : 1;
     dispatch({
       type: "ADD_TO_ORDER",
-      payload: {
-        ...product,
-        quantity: existingItem ? existingItem.quantity + 1 : 1,
-      },
+      payload: { ...product, quantity: newQty },
     });
-
     dispatch({
       type: "UPDATE_QUANTITY",
-      payload: {
-        _id: id,
-        quantity: existingItem ? existingItem.quantity + 1 : 1,
-      },
+      payload: { _id: id, quantity: newQty },
     });
-
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    try {
-      await axios.put("http://localhost:5001/api/cart", { cart: updatedCart });
-    } catch (error) {}
+    // Sync with backend including Authorization header
+    if (isLoggedIn) {
+      const token = localStorage.getItem("token");
+      try {
+        await axios.put(
+          "http://localhost:5001/api/cart",
+          { cart: updatedCart },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      } catch (error) {
+        console.error("Failed to sync cart in Menu:", error.response || error);
+      }
+    }
   };
 
-  // 🔹 Ta bort produkt från varukorgen och uppdatera Context
+  // Delete product from cart and update Context
   const handleRemoveQuantity = (id) => {
     const newQuantity = Math.max((state.quantities[id] || 0) - 1, 0);
 

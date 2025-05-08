@@ -1,23 +1,37 @@
 //OrderContent.jsx
-
 import React, { createContext, useReducer, useContext, useEffect } from "react";
 import axios from "axios";
-import { useAuth } from "../hooks/useAuth"; // get information about user log in from useAuth
+import { useAuth } from "../hooks/useAuth";
+
+// Utility to safely parse JSON
+const safeParse = (value, defaultValue) => {
+  try {
+    return JSON.parse(value) ?? defaultValue;
+  } catch {
+    return defaultValue;
+  }
+};
 
 // Initial state
+const storedCart = safeParse(localStorage.getItem("cart"), []);
+const storedQuantities = safeParse(localStorage.getItem("quantities"), {});
 const initialState = {
-  order: JSON.parse(localStorage.getItem("cart")) || [],
-  quantities: JSON.parse(localStorage.getItem("quantities")) || {},
+  order: Array.isArray(storedCart) ? storedCart : [],
+  quantities: storedQuantities,
   showCartTooltip:
-    JSON.parse(localStorage.getItem("cart"))?.some(
-      (item) => item.quantity > 0
-    ) || false,
+    (Array.isArray(storedCart) &&
+      storedCart.some((item) => item.quantity > 0)) ||
+    false,
 };
 
 // Reducer-function
 const orderReducer = (state, action) => {
   switch (action.type) {
     case "SET_ORDER":
+      if (!Array.isArray(action.payload)) {
+        console.error("SET_ORDER payload is not an array!", action.payload);
+        return state;
+      }
       const hasItems = action.payload.some((item) => item.quantity > 0);
       localStorage.setItem("showCartTooltip", JSON.stringify(hasItems));
       return {
@@ -129,11 +143,10 @@ const orderReducer = (state, action) => {
   }
 };
 
-// Context-skapande
+// Context-create
 const OrderContext = createContext();
 
-// Provider-komponent
-
+// Provider-component
 export const OrderProvider = ({ children }) => {
   const [state, dispatch] = useReducer(orderReducer, initialState);
   const { isLoggedIn } = useAuth();
@@ -144,18 +157,18 @@ export const OrderProvider = ({ children }) => {
       if (!token || !isLoggedIn) return;
 
       try {
-        const localCart = JSON.parse(localStorage.getItem("cart")) || [];
+        const localCart = safeParse(localStorage.getItem("cart"), []);
         const response = await axios.get("http://localhost:5001/api/cart", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         const backendCart = response.data || [];
 
-        // Slå ihop localStorage-cart och backend-cart
+        // merge cart(localstorage) with backend Slå ihop localStorage-cart och backend-cart
         const mergedCart = [...backendCart];
         localCart.forEach((item) => {
           const existingItem = mergedCart.find(
-            (prod) => prod.productId === item._id
+            (prod) => prod.productId.toString() === item._id
           );
           if (existingItem) {
             existingItem.quantity += item.quantity;
@@ -173,7 +186,9 @@ export const OrderProvider = ({ children }) => {
 
         localStorage.setItem("cart", JSON.stringify(mergedCart));
         dispatch({ type: "SET_ORDER", payload: mergedCart });
-      } catch (error) {}
+      } catch (error) {
+        console.error("syncCartWithBackend failed:", error.response || error);
+      }
     };
 
     syncCartWithBackend();
@@ -199,7 +214,6 @@ export const OrderProvider = ({ children }) => {
   };
 
   // get cart when logged in
-
   useEffect(() => {
     const fetchCart = async () => {
       const token = localStorage.getItem("token");
@@ -215,10 +229,12 @@ export const OrderProvider = ({ children }) => {
         dispatch({ type: "SET_ORDER", payload: cartData });
 
         localStorage.setItem("cart", JSON.stringify(cartData));
-      } catch (error) {}
+      } catch (error) {
+        console.error("fetchCart failed:", error);
+      }
     };
 
-    fetchCart(); // 🔹 Körs direkt efter inloggning
+    fetchCart();
   }, [isLoggedIn]);
 
   useEffect(() => {

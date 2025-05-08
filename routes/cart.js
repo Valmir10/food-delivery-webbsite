@@ -1,24 +1,24 @@
 //cart.js
 
-//cart.js
-
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User"); // Använder User-modellen
-// const { verifyToken } = require("../server.js");
+const User = require("../models/User");
 const verifyToken = require("../models/auth");
 
-// 🔹 Hämta användarens varukorg
+// Get user cart
 router.get("/", verifyToken, async (req, res) => {
+  console.log("→ GET /api/cart, req.user.id =", req.user.id);
   try {
     const user = await User.findById(req.user.id).populate("cart.productId");
+    console.log("  Fetched cart:", user.cart);
     res.status(200).json(user.cart);
   } catch (error) {
+    console.error("← ERROR in GET /api/cart:", error);
     res.status(500).json({ message: "Failed to fetch cart." });
   }
 });
 
-// 🔹 Uppdatera varukorgen
+// Update cart
 router.put("/", verifyToken, async (req, res) => {
   try {
     const { cart } = req.body;
@@ -26,13 +26,13 @@ router.put("/", verifyToken, async (req, res) => {
     const mergedCart = [...user.cart];
 
     cart.forEach((item) => {
-      const existingItem = mergedCart.find(
-        (prod) => prod.productId.toString() === item._id
+      const existing = mergedCart.find(
+        (prod) => prod.productId.toString() === item.productId
       );
-      if (existingItem) {
-        existingItem.quantity += item.quantity;
+      if (existing) {
+        existing.quantity += item.quantity;
       } else {
-        mergedCart.push({ productId: item._id, quantity: item.quantity });
+        mergedCart.push({ productId: item.productId, quantity: item.quantity });
       }
     });
 
@@ -46,7 +46,7 @@ router.put("/", verifyToken, async (req, res) => {
   }
 });
 
-// 🔹 Rensa varukorgen (t.ex. efter en beställning)
+// Clear cart after order
 router.delete("/", verifyToken, async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.user.id, { cart: [] });
