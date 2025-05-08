@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
-import Header from "./components/Header";
-import Welcome from "./components/Welcome";
-import Filter from "./components/Filter";
-import Menu from "./components/Menu";
-import "./HomePage.css";
+import Header from "../components/Header";
+import Welcome from "../components/Welcome";
+import Filter from "../components/Filter";
+import Menu from "../components/Menu";
+import "../styles/HomePage.css";
 
 const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");

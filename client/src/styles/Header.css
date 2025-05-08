@@ -619,6 +619,13 @@
   .list-container {
     width: 55%;
   }
+
+  .sign-up-form,
+  .sign-in-form,
+  .contact-us-form-container {
+    top: 15%;
+    left: 37%;
+  }
 }
 
 @media screen and (max-width: 1366px) and (max-height: 900px) {

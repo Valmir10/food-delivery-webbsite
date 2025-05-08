@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useOrder } from "./OrderContent.jsx";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import "./PaymentContent.css";
+import "../styles/PaymentContent.css";
 import masterCardImage from "../images/mastercard.svg";
 import visaCardImage from "../images/visa-card.svg";
 import exclamationImage from "../images/exclamation.png";

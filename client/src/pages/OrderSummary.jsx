@@ -1,10 +1,10 @@
 //OrderSummary.jsx
 import React from "react";
-import "./OrderSummary.css";
-import Header from "./components/Header";
-import FoodSummary from "./components/FoodSummary";
-import PriceSummary from "./components/PriceSummary";
-import { useOrder } from "./components/OrderContent.jsx";
+import "../styles/OrderSummary.css";
+import Header from "../components/Header";
+import FoodSummary from "../components/FoodSummary";
+import PriceSummary from "../components/PriceSummary";
+import { useOrder } from "../components/OrderContent.jsx";
 
 const OrderSummary = () => {
   const { state, dispatch } = useOrder();

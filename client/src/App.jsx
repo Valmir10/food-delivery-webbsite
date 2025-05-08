@@ -2,11 +2,11 @@
 
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage";
-import OrderSummary from "./OrderSummary";
-import DeliveryInformation from "./DeliveryInformation";
-import PaymentInformation from "./PaymentInformation";
-import OrderCompleted from "./OrderCompleted";
+import HomePage from "./pages/HomePage.jsx";
+import OrderSummary from "./pages/OrderSummary";
+import DeliveryInformation from "./pages/DeliveryInformation";
+import PaymentInformation from "./pages/PaymentInformation";
+import OrderCompleted from "./pages/OrderCompleted";
 import { OrderProvider } from "./components/OrderContent.jsx";
 
 const App = () => {

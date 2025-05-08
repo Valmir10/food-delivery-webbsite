@@ -1,7 +1,7 @@
 import React from "react";
-import "./DeliveryInformation.css";
-import Header from "./components/Header";
-import PersonalInformation from "./components/PersonalInformation";
+import "../styles/DeliveryInformation.css";
+import Header from "../components/Header";
+import PersonalInformation from "../components/PersonalInformation";
 
 const DeliveryInformation = () => {
   return (

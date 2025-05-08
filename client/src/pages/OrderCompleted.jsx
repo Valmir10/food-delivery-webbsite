@@ -1,7 +1,7 @@
 import React from "react";
-import "./OrderCompleted.css";
-import Header from "./components/Header";
-import DeliveryDetails from "./components/DeliveryDetails";
+import "../styles/OrderCompleted.css";
+import Header from "../components/Header";
+import DeliveryDetails from "../components/DeliveryDetails";
 
 const OrderCompleted = () => {
   return (

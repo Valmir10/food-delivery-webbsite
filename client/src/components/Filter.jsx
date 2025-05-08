@@ -1,5 +1,5 @@
 import React from "react";
-import "./Filter.css";
+import "../styles/Filter.css";
 
 import Pizzaimage from "../images/pizza-welcome.png";
 import Pastaimage from "../images/product-pasta.png";

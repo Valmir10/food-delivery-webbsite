@@ -1,5 +1,5 @@
 import React from "react";
-import "./PersonalInformation.css";
+import "../styles/PersonalInformation.css";
 import { useNavigate } from "react-router-dom";
 
 const PersonalInformation = () => {

@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useOrder } from "./OrderContent.jsx";
-
-import "./FoodSummary.css";
+import "../styles/FoodSummary.css";
 import exclamationImage from "../images/exclamation.png";
 import deleteIcon from "../images/cancel.png";
 

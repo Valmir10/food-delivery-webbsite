@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Menu.css";
+import "../styles/Menu.css";
 import { useOrder } from "./OrderContent";
 import { useAuth } from "../hooks/useAuth";
 

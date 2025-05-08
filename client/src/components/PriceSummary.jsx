@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useOrder } from "./OrderContent.jsx";
 import { useAuth } from "../hooks/useAuth";
-
-import "./PriceSummary.css";
+import "../styles/PriceSummary.css";
 import { useNavigate } from "react-router-dom";
 import exclamationImage from "../images/exclamation.png";
 import deleteIcon from "../images/cancel.png";

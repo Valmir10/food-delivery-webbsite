@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useOrder } from "../components/OrderContent";
 import { useAuth } from "../hooks/useAuth";
-import "./Header.css";
+import "../styles/Header.css";
 import searchIconImage from "../images/search-icon.png";
 import shoppingCart from "../images/shooping-cart.png";
 import profileImage from "../images/profile-image.png";

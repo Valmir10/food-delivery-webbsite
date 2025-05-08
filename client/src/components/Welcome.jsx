@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"; // Lägg till useEffect
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Welcome.css";
+import "../styles/Welcome.css";
 
 import welcomeImage from "../images/welcome-food-4.png";
 import welcomeImage2 from "../images/pizza-welcome.png";
@@ -15,7 +15,7 @@ const Welcome = ({ onCategorySelect }) => {
   const [filteredResults, setFilteredResults] = useState([]);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
-  // Hämta kategorier från API
+  // get categories
   useEffect(() => {
     const fetchCategories = async () => {
       try {

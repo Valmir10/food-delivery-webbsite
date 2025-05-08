@@ -1,7 +1,7 @@
 import React from "react";
-import "./PaymentInformation.css";
-import Header from "./components/Header";
-import PaymentContent from "./components/PaymentContent";
+import "../styles/PaymentInformation.css";
+import Header from "../components/Header";
+import PaymentContent from "../components/PaymentContent";
 
 const PaymentInformation = () => {
   return (
