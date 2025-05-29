@@ -3,6 +3,6 @@ import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/food-delivery-website/",
+  base: "/food-delivery-webbsite/",
   plugins: [react()],
 });
