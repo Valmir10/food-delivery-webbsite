@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages --no-history -d dist -b gh-pages -r https://github.com/Valmir10/food-delivery-webbsite.git -f"
+    "deploy": "gh-pages --branch github-pages --dist dist --repo https://github.com/Valmir10/food-delivery-webbsite.git --message \"Deploy to github-pages\""
   },
   "dependencies": {
     "react": "^19.1.0",
