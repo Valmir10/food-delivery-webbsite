@@ -154,8 +154,10 @@
 }
 
 .welcome-image-1 {
-  height: 46%;
-  width: 18%;
+  /* height: 46%; */
+  /* width: 18%; */
+  height: 44%;
+  width: 16%;
   border-radius: 50%;
   position: absolute;
   right: 240px;
@@ -163,8 +165,10 @@
 }
 
 .welcome-image-2 {
-  height: 30%;
-  width: 13%;
+  /* height: 30%; */
+  /* width: 13%; */
+  height: 28%;
+  width: 11%;
   border-radius: 50%;
   position: absolute;
   right: 530px;
@@ -172,8 +176,10 @@
 }
 
 .welcome-image-3 {
-  height: 30%;
-  width: 13%;
+  /* height: 30%; */
+  /* width: 13%; */
+  height: 28%;
+  width: 11%;
   border-radius: 50%;
   position: absolute;
   right: 20px;
@@ -181,8 +187,10 @@
 }
 
 .welcome-image-4 {
-  height: 30%;
-  width: 13%;
+  /* height: 30%; */
+  /* width: 13%; */
+  height: 28%;
+  width: 11%;
   border-radius: 50%;
   position: absolute;
   right: 530px;
@@ -190,8 +198,10 @@
 }
 
 .welcome-image-5 {
-  height: 30%;
-  width: 13%;
+  /* height: 30%; */
+  /* width: 13%; */
+  height: 28%;
+  width: 11%;
   border-radius: 50%;
   position: absolute;
   right: 20px;
