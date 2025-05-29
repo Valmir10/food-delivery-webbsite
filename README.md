@@ -45,13 +45,13 @@ Open a **new terminal** and run the following:
 ```sh
 cd client
 npm install
-npm start
+npm run dev
 ```
 
 ✅ The frontend will now be running on:
 
 ```
-http://localhost:3000/
+http://localhost:5173/food-delivery-website/
 ```
 
 ---
@@ -60,6 +60,7 @@ http://localhost:3000/
 
 - 💻 **HTML & CSS** – For structure and styling
 - ⚛️ **React** – For building the user interface
+- ⚡️ **Vite** – For fast development
 - 🛠 **Express** – For backend logic
 - 🍃 **MongoDB** – For storing data (like orders, menu items, etc.)
 - 🌐 **Node.js** – As the backend runtime

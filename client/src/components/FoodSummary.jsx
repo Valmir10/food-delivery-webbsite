@@ -5,6 +5,18 @@ import { useOrder } from "./OrderContent.jsx";
 import "../styles/FoodSummary.css";
 import exclamationImage from "../images/exclamation.png";
 import deleteIcon from "../images/cancel.png";
+import Alert from "./Alert.jsx";
+
+const imageModules = import.meta.glob("../images/*", {
+  eager: true,
+  import: "default",
+});
+const productImageMap = Object.fromEntries(
+  Object.entries(imageModules).map(([path, url]) => {
+    const filename = path.split("/").pop();
+    return [filename, url];
+  })
+);
 
 const FoodSummary = ({ onRemoveItem }) => {
   const [alertMessage, setAlertMessage] = useState("");
@@ -69,14 +81,15 @@ const FoodSummary = ({ onRemoveItem }) => {
                     src={
                       item.imageUrl?.startsWith("http")
                         ? item.imageUrl
-                        : item.imageUrl
-                        ? require(`../images${item.imageUrl.replace(
-                            "/images",
-                            ""
-                          )}`)
-                        : exclamationImage
+                        : productImageMap[
+                            item.imageUrl.replace(/^\/images\//, "")
+                          ] || exclamationImage
                     }
                     alt={item.name}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = exclamationImage;
+                    }}
                   />
                 </div>
                 <div className="product-title-container">
@@ -103,28 +116,14 @@ const FoodSummary = ({ onRemoveItem }) => {
       </div>
 
       {showAlert && (
-        <div className="alert-container">
-          <div className="alert-content-container">
-            <div className="alert-image-container">
-              <img src={exclamationImage} alt="Exclamation" />
-            </div>
-            <div className="alert-message-container">
-              <p>{alertMessage}</p>
-            </div>
-            <img
-              className="delete-icon-alert"
-              src={deleteIcon}
-              alt="Delete Alert"
-              onClick={handleDeleteAlert}
-            />
-          </div>
-          <div className="alert-loading-bar">
-            <div
-              className="alert-progress-bar"
-              style={{ width: `${progress}%` }}
-            ></div>
-          </div>
-        </div>
+        <Alert
+          message={alertMessage}
+          progress={progress}
+          onClose={() => {
+            setShowAlert(false);
+            setProgress(0);
+          }}
+        />
       )}
     </div>
   );

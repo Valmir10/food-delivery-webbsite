@@ -25,5 +25,8 @@
     "react-router-dom": "^6.26.2",
     "uuid": "^11.0.5"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }

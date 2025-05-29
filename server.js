@@ -1,35 +1,42 @@
 //server.js
 
 require("dotenv").config();
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const path = require("path");
-
 const Product = require("./models/Product");
 const User = require("./models/User");
 const Order = require("./models/Orders");
 const categoriesRoute = require("./routes/categories");
 const cartRoute = require("./routes/cart");
-
 const app = express();
-
 const PORT = process.env.PORT || 5001;
-
 const SECRET_KEY = process.env.SECRET_KEY;
 const MONGODB_URI = process.env.MONGODB_URI;
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://<ditt-github-user>.github.io",
+  "http://localhost:3000",
+];
 
 // CORS-Settings
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      callback(new Error(`CORS-policy: origin ${origin} not allowed`));
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -38,12 +45,12 @@ mongoose
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.log("❌ MongoDB connection error:", err));
 
-// 🔹 Generate token
+//  Generate token
 const generateToken = (user) => {
   return jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: "1h" });
 };
 
-// 🔹 Middleware for JWT-token
+//  Middleware for JWT-token
 const verifyToken = (req, res, next) => {
   const authHeader = req.header("Authorization");
   if (!authHeader || !authHeader.startsWith("Bearer ")) {

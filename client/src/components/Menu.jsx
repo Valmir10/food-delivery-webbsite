@@ -4,19 +4,30 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/Menu.css";
 import { useOrder } from "./OrderContent";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth.js";
 
 import deleteIcon from "../images/cancel.png";
 import StarsFour from "../images/Stars-rating-4.0.png";
 import StarsFive from "../images/Stars-rating-5.0.png";
 import StarsFourHalf from "../images/Stars-rating-4.5.png";
 
+const imageModules = import.meta.glob("../images/*", {
+  eager: true,
+  import: "default",
+});
+const productImageMap = Object.fromEntries(
+  Object.entries(imageModules).map(([path, url]) => {
+    const filename = path.split("/").pop();
+    return [filename, url];
+  })
+);
+
 const Menu = ({ selectedCategory, resetCategory, isFilterActive }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const { state, dispatch } = useOrder();
+  const { state, dispatch, updateCart } = useOrder();
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, handleLogout } = useAuth();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -50,23 +61,15 @@ const Menu = ({ selectedCategory, resetCategory, isFilterActive }) => {
   }, [isLoggedIn, dispatch, state.quantities]);
 
   const handleAddQuantity = async (id) => {
-    const product = products.find((product) => product._id === id);
+    const product = products.find((p) => p._id === id);
     if (!product) {
       console.error("Product not found:", id);
       return;
     }
 
-    // Prepare updated cart array
-    const updatedCart = state.order.map((item) =>
-      item._id === id ? { ...item, quantity: item.quantity + 1 } : item
-    );
-    const existingItem = state.order.find((item) => item._id === id);
-    if (!existingItem) {
-      updatedCart.push({ ...product, quantity: 1 });
-    }
+    const existingQty = state.quantities[id] || 0;
+    const newQty = existingQty + 1;
 
-    // Update local state and storage
-    const newQty = existingItem ? existingItem.quantity + 1 : 1;
     dispatch({
       type: "ADD_TO_ORDER",
       payload: { ...product, quantity: newQty },
@@ -75,20 +78,20 @@ const Menu = ({ selectedCategory, resetCategory, isFilterActive }) => {
       type: "UPDATE_QUANTITY",
       payload: { _id: id, quantity: newQty },
     });
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    // Sync with backend including Authorization header
+    const updatedQuantities = { ...state.quantities, [id]: newQty };
+    const rawCart = Object.entries(updatedQuantities)
+      .filter(([_, qty]) => qty > 0)
+      .map(([prodId, qty]) => ({ productId: prodId, quantity: qty }));
+
     if (isLoggedIn) {
-      const token = localStorage.getItem("token");
       try {
-        await axios.put(
-          "http://localhost:5001/api/cart",
-          { cart: updatedCart },
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
+        await updateCart(rawCart);
       } catch (error) {
-        console.error("Failed to sync cart in Menu:", error.response || error);
+        console.error("Failed to sync cart via updateCart:", error);
       }
+    } else {
+      localStorage.setItem("cart", JSON.stringify(rawCart));
     }
   };
 
@@ -154,11 +157,16 @@ const Menu = ({ selectedCategory, resetCategory, isFilterActive }) => {
                       .replace(/ /g, "-")}-img-container`}
                   >
                     <img
-                      src={require(`../images${product.imageUrl.replace(
-                        "/images",
-                        ""
-                      )}`)}
+                      src={
+                        productImageMap[
+                          product.imageUrl.replace(/^\/images\//, "")
+                        ] || productImageMap["default-product.png"]
+                      }
                       alt={product.name}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = productImageMap["default-product.png"];
+                      }}
                     />
                     <div className="name-stars-container">
                       <div className="product-name">

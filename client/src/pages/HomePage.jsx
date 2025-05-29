@@ -29,7 +29,7 @@ const HomePage = () => {
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setIsFilterActive(true);
-    scrollToMenu(); // Scroll to Menu when a category is selected
+    scrollToMenu();
   };
 
   const handleResetFilter = () => {

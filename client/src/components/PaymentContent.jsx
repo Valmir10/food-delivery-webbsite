@@ -7,6 +7,7 @@ import masterCardImage from "../images/mastercard.svg";
 import visaCardImage from "../images/visa-card.svg";
 import exclamationImage from "../images/exclamation.png";
 import deleteIcon from "../images/cancel.png";
+import Alert from "./Alert.jsx";
 
 const PaymentContent = () => {
   const { state, dispatch } = useOrder();
@@ -150,7 +151,7 @@ const PaymentContent = () => {
           setTimeout(() => {
             dispatch({ type: "RESET_ORDER" });
             setSuccess(false);
-            navigate("/order-completed");
+            navigate("/completed");
           }, 2000);
         }, 3000);
       } else {
@@ -351,28 +352,14 @@ const PaymentContent = () => {
       </div>
 
       {showAlert && (
-        <div className="alert-container">
-          <div className="alert-content-container">
-            <div className="alert-image-container">
-              <img src={exclamationImage} alt="Exclamation" />
-            </div>
-            <div className="alert-message-container">
-              <p>{alertMessage}</p>
-            </div>
-            <img
-              className="delete-icon-alert"
-              src={deleteIcon}
-              alt="Delete Alert"
-              onClick={handleDeleteAlert}
-            />
-          </div>
-          <div className="alert-loading-bar">
-            <div
-              className="alert-progress-bar"
-              style={{ width: `${progress}%` }}
-            ></div>
-          </div>
-        </div>
+        <Alert
+          message={alertMessage}
+          progress={progress}
+          onClose={() => {
+            setShowAlert(false);
+            setProgress(0);
+          }}
+        />
       )}
     </div>
   );

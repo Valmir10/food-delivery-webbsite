@@ -2,23 +2,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useOrder } from "../components/OrderContent";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth.js";
 import "../styles/Header.css";
-import searchIconImage from "../images/search-icon.png";
 import shoppingCart from "../images/shooping-cart.png";
 import profileImage from "../images/profile-image.png";
-import deleteIcon from "../images/cancel.png";
-import exclamationImage from "../images/exclamation.png";
+import Alert from "./Alert.jsx";
+import { SignInForm, SignUpForm } from "./AuthForms.jsx";
+import ContactUsForm from "./ContactUsForm.jsx";
 
 const Header = ({ scrollToMenu, scrollToHome }) => {
   const {
     isLoggedIn,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    name,
-    setName,
     alertMessage,
     setAlertMessage,
     showAlert,
@@ -35,40 +29,20 @@ const Header = ({ scrollToMenu, scrollToHome }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [showSignUp, setShowSignUp] = useState(true);
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [showContactUs, setShowContactUs] = useState(false);
-
-  const handleProfileClick = () => {
-    setIsFormVisible(true);
-  };
-
-  const handleCloseForm = () => {
-    setIsFormVisible(false);
-  };
-
-  const handleCloseContactUs = () => {
-    setShowContactUs(false);
-  };
-
-  const handleFormSwitch = () => {
-    setShowSignUp(!showSignUp);
-    setAlertMessage("");
-    setShowAlert(false);
-  };
+  const [modalType, setModalType] = useState(null);
+  const [showContact, setShowContact] = useState(false);
 
   const handleCartClick = () => {
     if (!isLoggedIn) {
       setAlertMessage("Log in to order products!");
       setShowAlert(true);
       setProgress(0);
-      setIsFormVisible(true);
-      setShowSignUp(true);
+      setModalType("signin");
       return;
     }
 
     if (state.order.length > 0) {
-      navigate("/order-summary");
+      navigate("/summary");
     } else {
       dispatch({ type: "HIDE_CART_TOOLTIP" });
       setAlertMessage("Your cart is empty! Add products before proceeding.");
@@ -94,18 +68,6 @@ const Header = ({ scrollToMenu, scrollToHome }) => {
       setProgress(0);
     }
   }, [progress, showAlert]);
-
-  const handleDeleteAlert = () => {
-    setShowAlert(false);
-  };
-
-  const handleSendMessage = (e) => {
-    e.preventDefault();
-    setAlertMessage("Thank you for your message!");
-    setShowAlert(true);
-    setProgress(0);
-    setShowContactUs(false);
-  };
 
   const handleHomeClick = () => {
     if (location.pathname === "/") {
@@ -134,8 +96,8 @@ const Header = ({ scrollToMenu, scrollToHome }) => {
         <div className="list-container">
           <a onClick={handleHomeClick}>Home</a>
           <a onClick={handleMenuClick}>Menu</a>
-          <a onClick={() => setShowContactUs(true)}>Contact Us</a>
-          <a onClick={handleProfileClick}>Profile</a>
+          <a onClick={() => setShowContact(true)}>Contact Us</a>
+          <a onClick={() => setModalType("signin")}> Profile </a>
         </div>
       </div>
 
@@ -147,21 +109,29 @@ const Header = ({ scrollToMenu, scrollToHome }) => {
           )}
         </div>
 
-        <div className="profile-img-container" onClick={handleProfileClick}>
+        <div
+          className="profile-img-container"
+          onClick={() => setModalType("signin")}
+        >
           <img src={profileImage} className="profile-img" alt="Profile" />
         </div>
 
         <div className="sign-in-button-container">
           {isLoggedIn ? (
             <button
-              onClick={handleLogout}
+              onClick={() => {
+                handleLogout();
+                setAlertMessage("Logged out successfully");
+                setShowAlert(true);
+                setProgress(0);
+              }}
               style={{ backgroundColor: "gray", color: "white" }}
             >
               Log out
             </button>
           ) : (
             <button
-              onClick={handleProfileClick}
+              onClick={() => setModalType("signin")}
               style={{ backgroundColor: "red", color: "white" }}
             >
               Sign in
@@ -170,223 +140,49 @@ const Header = ({ scrollToMenu, scrollToHome }) => {
         </div>
       </div>
 
-      {isFormVisible && (
-        <div>
-          {showSignUp ? (
-            <form className="sign-up-form" onSubmit={handleSignUp}>
-              <div className="container-1-sing-up">
-                <div className="sign-up-container">
-                  <p>Sign Up</p>
-                </div>
-                <div className="delete-icon-container">
-                  <img
-                    className="delete-icon-img"
-                    src={deleteIcon}
-                    alt="Delete"
-                    onClick={handleCloseForm}
-                  />
-                </div>
-              </div>
-              <div className="container-2-personal-information">
-                <label htmlFor="your-name" className="name-label-container">
-                  <input
-                    id="your-name"
-                    className="your-name-box"
-                    type="text"
-                    placeholder="Your Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                  />
-                </label>
-
-                <label className="email-label-container" htmlFor="email">
-                  <input
-                    id="email"
-                    className="your-email-box"
-                    type="email"
-                    placeholder="Your Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </label>
-
-                <label className="password-label-container" htmlFor="password">
-                  <input
-                    id="password"
-                    className="your-password-box"
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="container-3-create-button">
-                <button type="submit">Create Account</button>
-              </div>
-              <div className="container-4-already-account">
-                <p className="already-account-p">Already have an account?</p>
-                <p className="click-here-p" onClick={handleFormSwitch}>
-                  Click here
-                </p>
-              </div>
-            </form>
-          ) : (
-            <form
-              className="sign-in-form"
-              onSubmit={(e) => handleLogin(e, setIsFormVisible)}
-            >
-              <div className="container-1-sing-in">
-                <div className="sign-in-container">
-                  <p>Sign In</p>
-                </div>
-
-                <div className="delete-icon-container">
-                  <img
-                    className="delete-icon-img"
-                    src={deleteIcon}
-                    alt="Delete"
-                    onClick={handleCloseForm}
-                  />
-                </div>
-              </div>
-              <div className="container-2-personal-information-sign-in">
-                <label className="sign-in-emai-label" htmlFor="sign-in-email">
-                  <input
-                    id="sign-in-email"
-                    className="your-email-box"
-                    type="text"
-                    placeholder="Your Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </label>
-
-                <label
-                  className="sign-in-password-label"
-                  htmlFor="your-password"
-                >
-                  <input
-                    id="your-password"
-                    className="your-password-box"
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="container-3-create-button">
-                <button type="submit">Login</button>
-              </div>
-              <div className="container-4-create-account">
-                <p className="create-account-p">Create a new account?</p>
-                <p className="click-here-p" onClick={handleFormSwitch}>
-                  Click here
-                </p>
-              </div>
-            </form>
-          )}
-        </div>
-      )}
-
-      {showContactUs && (
-        <form
-          className="contact-us-form-container"
-          onSubmit={handleSendMessage}
-        >
-          <div className="container-1-contact-us">
-            <div className="contact-us-container-p">
-              <p>Contact us</p>
-            </div>
-
-            <div className="delete-icon-container">
-              <img
-                className="delete-icon-img"
-                src={deleteIcon}
-                alt="Delete"
-                onClick={handleCloseContactUs}
-              />
-            </div>
-          </div>
-
-          <div className="personal-information-container-contact">
-            <label className="your-name-box-container" htmlFor="your-name-box">
-              <input
-                id="your-name-box"
-                type="text"
-                placeholder="Your Name"
-                required
-              />
-            </label>
-
-            <label
-              className="your-email-box-container"
-              htmlFor="your-email-box"
-            >
-              <input
-                id="your-email-box"
-                type="text"
-                placeholder="Your Email"
-                required
-              />
-            </label>
-          </div>
-
-          <div className="your-message-container">
-            <label
-              htmlFor="your-message-box"
-              className="your-message-label-container"
-            >
-              <textarea
-                id="your-message-box"
-                type="text"
-                placeholder="Message"
-                required
-              />
-            </label>
-          </div>
-
-          <div
-            id="send-message-contact-us"
-            className="container-3-create-button"
-          >
-            <button type="submit">Send</button>
-          </div>
-        </form>
-      )}
       {showAlert && (
-        <div className="alert-container" key={alertKey}>
-          <div className="alert-content-container">
-            <div className="alert-image-container">
-              <img src={exclamationImage} alt="Exclamation" />
-            </div>
-            <div className="alert-message-container">
-              <p>{alertMessage}</p>
-            </div>
-            <img
-              className="delete-icon-alert"
-              src={deleteIcon}
-              alt="Delete Alert"
-              onClick={() => {
-                console.log("Alert closed manually.");
-                setShowAlert(false);
-                setProgress(0);
-              }}
-            />
-          </div>
-          <div className="alert-loading-bar">
-            <div
-              className="alert-progress-bar"
-              style={{ width: `${progress}%` }}
-            ></div>
-          </div>
-        </div>
+        <Alert
+          message={alertMessage}
+          progress={progress}
+          onClose={() => {
+            setShowAlert(false);
+            setProgress(0);
+          }}
+          key={alertKey}
+        />
+      )}
+
+      {modalType === "signin" && (
+        <SignInForm
+          onLogin={({ email, password }) => {
+            handleLogin({ email, password }, () => setModalType(null));
+          }}
+          onClose={() => setModalType(null)}
+          switchToSignUp={() => setModalType("signup")}
+        />
+      )}
+
+      {modalType === "signup" && (
+        <SignUpForm
+          onSignUp={({ name, email, password }) => {
+            handleSignUp({ name, email, password }, () => setModalType(null));
+          }}
+          onClose={() => setModalType(null)}
+          switchToSignIn={() => setModalType("signin")}
+        />
+      )}
+
+      {showContact && (
+        <ContactUsForm
+          onClose={() => setShowContact(false)}
+          onSend={(e) => {
+            e.preventDefault();
+            setAlertMessage("Thank you for your message!");
+            setShowAlert(true);
+            setProgress(0);
+            setShowContact(false);
+          }}
+        />
       )}
     </header>
   );

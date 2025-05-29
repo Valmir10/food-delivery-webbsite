@@ -23,6 +23,7 @@
 }
 
 .company-name {
+  font-family: "Roboto", sans-serif;
   margin-left: 20px;
   color: orange;
 }
@@ -546,12 +547,11 @@
   align-items: center;
 }
 
-.alert-message-contianer p {
+.alert-message-container p {
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-size: 15px;
 }
-
 .alert-loading-bar {
   height: 10%;
   width: 100%;

@@ -31,6 +31,7 @@
 }
 
 .promo-code-text-container p {
+  font-family: "Roboto", system-ui;
   margin-left: 1%;
   width: 100%;
 }

@@ -1,7 +1,7 @@
 //OrderContent.jsx
+
 import React, { createContext, useReducer, useContext, useEffect } from "react";
 import axios from "axios";
-import { useAuth } from "../hooks/useAuth";
 
 // Utility to safely parse JSON
 const safeParse = (value, defaultValue) => {
@@ -123,7 +123,6 @@ const orderReducer = (state, action) => {
       return { ...state, showCartTooltip: true };
 
     case "SHOW_GUEST_TOOLTIP":
-      console.log("🔹 SHOW_GUEST_TOOLTIP körs! Tooltipen borde synas.");
       return {
         ...state,
         showCartTooltip: true,
@@ -147,9 +146,8 @@ const orderReducer = (state, action) => {
 const OrderContext = createContext();
 
 // Provider-component
-export const OrderProvider = ({ children }) => {
+export const OrderProvider = ({ children, isLoggedIn }) => {
   const [state, dispatch] = useReducer(orderReducer, initialState);
-  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     const syncCartWithBackend = async () => {
@@ -164,7 +162,6 @@ export const OrderProvider = ({ children }) => {
 
         const backendCart = response.data || [];
 
-        // merge cart(localstorage) with backend Slå ihop localStorage-cart och backend-cart
         const mergedCart = [...backendCart];
         localCart.forEach((item) => {
           const existingItem = mergedCart.find(
@@ -177,7 +174,6 @@ export const OrderProvider = ({ children }) => {
           }
         });
 
-        // send the cart content to backend
         await axios.put(
           "http://localhost:5001/api/cart",
           { cart: mergedCart },

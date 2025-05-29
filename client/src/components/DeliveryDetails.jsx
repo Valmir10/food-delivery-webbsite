@@ -1,5 +1,4 @@
 // DeliveryDetails.jsx
-
 import React, { useState, useEffect } from "react";
 import "../styles/DeliveryDetails.css";
 import cardBoardBox from "../images/cardboard-box.png";

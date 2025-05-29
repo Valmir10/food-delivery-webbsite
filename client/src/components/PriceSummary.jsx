@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useOrder } from "./OrderContent.jsx";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth.js";
 import "../styles/PriceSummary.css";
 import { useNavigate } from "react-router-dom";
 import exclamationImage from "../images/exclamation.png";
 import deleteIcon from "../images/cancel.png";
+import Alert from "./Alert.jsx";
 
 const PriceSummary = ({}) => {
   const navigate = useNavigate();
@@ -15,7 +16,6 @@ const PriceSummary = ({}) => {
   const [progress, setProgress] = useState(0);
   const { isLoggedIn, isAuthChecked } = useAuth();
 
-  // Dynamisk beräkning av subtotal
   const subtotal = useMemo(() => {
     return state.order.reduce(
       (sum, item) => sum + item.price * item.quantity,
@@ -52,7 +52,7 @@ const PriceSummary = ({}) => {
       return;
     }
 
-    navigate("/payment-information");
+    navigate("/payment");
   };
 
   const handlePromoSubmit = (e) => {
@@ -120,28 +120,14 @@ const PriceSummary = ({}) => {
       </div>
 
       {showAlert && (
-        <div className="alert-container">
-          <div className="alert-content-container">
-            <div className="alert-image-container">
-              <img src={exclamationImage} alt="Exclamation" />
-            </div>
-            <div className="alert-message-container">
-              <p>{alertMessage}</p>
-            </div>
-            <img
-              className="delete-icon-alert"
-              src={deleteIcon}
-              alt="Delete Alert"
-              onClick={handleDeleteAlert}
-            />
-          </div>
-          <div className="alert-loading-bar">
-            <div
-              className="alert-progress-bar"
-              style={{ width: `${progress}%` }}
-            ></div>
-          </div>
-        </div>
+        <Alert
+          message={alertMessage}
+          progress={progress}
+          onClose={() => {
+            setShowAlert(false);
+            setProgress(0);
+          }}
+        />
       )}
     </div>
   );

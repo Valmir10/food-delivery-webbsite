@@ -1,11 +1,5 @@
 // src/hooks/useAuth.js
-
-// src/hooks/useAuth.js
-
-// src/hooks/useAuth.js
-
 import { useState, useEffect } from "react";
-
 import axios from "axios";
 
 export const useAuth = () => {
@@ -54,8 +48,7 @@ export const useAuth = () => {
     }, 100);
   };
 
-  const handleLogin = async (e, setIsFormVisible) => {
-    e.preventDefault();
+  const handleLogin = async ({ email, password }, onSuccess) => {
     try {
       const response = await axios.post("http://localhost:5001/api/login", {
         email,
@@ -70,7 +63,7 @@ export const useAuth = () => {
 
       triggerAlert(response.data.message);
       resetForm();
-      setIsFormVisible(false);
+      if (onSuccess) onSuccess();
     } catch (error) {
       triggerAlert(
         error.response?.data.message || `Unexpected error: ${error.message}`
@@ -78,8 +71,7 @@ export const useAuth = () => {
     }
   };
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
+  const handleSignUp = async ({ name, email, password }, onSuccess) => {
     try {
       const response = await axios.post("http://localhost:5001/api/register", {
         name,
@@ -95,6 +87,7 @@ export const useAuth = () => {
 
       triggerAlert(response.data.message);
       resetForm();
+      if (onSuccess) onSuccess();
     } catch (error) {
       triggerAlert(
         error.response?.data.message || `Unexpected error: ${error.message}`
@@ -140,7 +133,6 @@ export const useAuth = () => {
     setShowAlert,
     alertKey,
     progress,
-
     handleLogin,
     handleSignUp,
     handleLogout,
