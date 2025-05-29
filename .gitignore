@@ -15,6 +15,7 @@ dist-ssr
 
 # Environment-filer
 .env
+.env.production
 .env.*
 client/.env
 client/.env.*
