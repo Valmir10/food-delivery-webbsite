@@ -18,9 +18,12 @@ const SECRET_KEY = process.env.SECRET_KEY;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 const allowedOrigins = [
+  "http://localhost:5174",
   "http://localhost:5173",
-  "https://<ditt-github-user>.github.io",
+  "http://localhost:4173",
   "http://localhost:3000",
+  "https://valmir10.github.io",
+  "https://food-delivery-webbsite-production.up.railway.app",
 ];
 
 // CORS-Settings
