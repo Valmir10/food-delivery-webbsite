@@ -1,7 +1,9 @@
 name: CI / Deploy client to GitHub Pages
+
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -11,6 +13,7 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -19,7 +22,7 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install client deps
+      - name: Install client dependencies
         working-directory: ./client
         run: npm install --legacy-peer-deps
 
