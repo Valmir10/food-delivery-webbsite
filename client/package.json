@@ -13,9 +13,12 @@
     "deploy": "gh-pages --branch github-pages --dist dist --repo https://github.com/Valmir10/food-delivery-webbsite.git --message \"Deploy to github-pages\""
   },
   "dependencies": {
+    "build": "^0.1.4",
+    "npm": "^11.4.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.1"
+    "react-router-dom": "^7.6.1",
+    "run": "^1.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
