@@ -16,7 +16,7 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # behövs för peaceiris/actions-gh-pages
+          fetch-depth: 0
 
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -27,10 +27,13 @@ jobs:
         working-directory: client
         run: npm ci
 
+      - name: Create .env.production for Vite
+        working-directory: client
+        run: |
+          echo "VITE_API_URL=https://food-delivery-webbsite-production.up.railway.app" > .env.production
+
       - name: Build
         working-directory: client
-        env:
-          VITE_API_URL: https://food-delivery-webbsite-production.up.railway.app
         run: npm run build
 
       - name: Copy index to 404
