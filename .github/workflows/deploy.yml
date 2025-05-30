@@ -2,7 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build_and_deploy:
@@ -12,11 +13,15 @@ jobs:
       pages: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # behövs för peaceiris/actions-gh-pages
 
       - name: Use Node.js
         uses: actions/setup-node@v4
-        with: { node-version: "18" }
+        with:
+          node-version: "18"
 
       - name: Install deps
         working-directory: client
@@ -24,12 +29,14 @@ jobs:
 
       - name: Build
         working-directory: client
+        env:
+          VITE_API_URL: https://food-delivery-webbsite-production.up.railway.app
         run: npm run build
 
       - name: Copy index to 404
         run: cp client/dist/index.html client/dist/404.html
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
