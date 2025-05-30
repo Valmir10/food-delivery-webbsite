@@ -1,42 +1,38 @@
-name: CI / Deploy client to GitHub Pages
-
+name: Deploy to GitHub Pages
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
-  build-and-deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18"
 
-      - name: Install client dependencies
-        working-directory: ./client
-        run: npm install --legacy-peer-deps
+      - name: Install dependencies
+        working-directory: client
+        run: npm ci
 
-      - name: Build client
-        working-directory: ./client
+      - name: Build
+        working-directory: client
         run: npm run build
 
-      - name: Copy index.html to 404.html
-        working-directory: ./client/dist
-        run: cp index.html 404.html
+      - name: Copy index to 404
+        run: cp client/dist/index.html client/dist/404.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: github-pages
           publish_dir: client/dist
+          publish_branch: github-pages
           force_orphan: true
