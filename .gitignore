@@ -12,14 +12,17 @@ dist
 dist-ssr
 *.local
 
-
-# Environment-filer
+# Environment-files
 .env
 .env.production
 .env.*
+
+# ignore alla env-files in client folder
 client/.env
 client/.env.*
 
+# do not ignore
+!client/.env.production
 
 # Editor directories and files
 .vscode/*
