@@ -30,12 +30,13 @@ jobs:
         run: npm run build
 
       - name: Copy index.html to 404.html
-        run: cp client/dist/index.html client/dist/404.html
+        working-directory: ./client/dist
+        run: cp index.html 404.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: github-pages
-          publish_dir: ./client/dist
+          publish_dir: client/dist
           force_orphan: true
