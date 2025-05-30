@@ -43,6 +43,7 @@ app.use(
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+console.log("🛠  MONGODB_URI is:", JSON.stringify(MONGODB_URI));
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("✅ Connected to MongoDB"))
