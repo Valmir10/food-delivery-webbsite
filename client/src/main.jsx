@@ -8,7 +8,7 @@ import { OrderProvider } from "./components/OrderContent.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter basename="/food-delivery-webbsite">
+    <BrowserRouter basename="/food-delivery-webbsite/">
       <OrderProvider>
         <App />
       </OrderProvider>

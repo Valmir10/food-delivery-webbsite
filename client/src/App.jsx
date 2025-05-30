@@ -1,7 +1,6 @@
 // App.jsx
 import { Routes, Route, Navigate } from "react-router-dom";
 
-// Dina imports
 import HomePage from "./pages/HomePage";
 import DeliveryInformation from "./pages/DeliveryInformation";
 import OrderSummary from "./pages/OrderSummary";
