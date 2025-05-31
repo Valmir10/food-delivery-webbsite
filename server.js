@@ -24,6 +24,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://valmir10.github.io",
   "https://food-delivery-webbsite-production.up.railway.app",
+  "https://valmir10.github.io/food-delivery-webbsite",
 ];
 
 // CORS-Settings
