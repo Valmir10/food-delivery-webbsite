@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/DeliveryDetails.css";
 import cardBoardBox from "../images/cardboard-box.png";
 import { useOrder } from "../components/OrderContent";
+import { API_BASE } from "../api.js";
 
 const DeliveryDetails = () => {
   const { state } = useOrder();
@@ -19,7 +20,7 @@ const DeliveryDetails = () => {
     try {
       let token = localStorage.getItem("token");
 
-      let response = await fetch("http://localhost:5001/api/orders", {
+      let response = await fetch(`${API_BASE}/api/orders`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -34,7 +35,7 @@ const DeliveryDetails = () => {
           localStorage.setItem("token", data.newToken);
           token = data.newToken;
 
-          response = await fetch("http://localhost:5001/api/orders", {
+          response = await fetch(`${API_BASE}/api/orders`, {
             method: "GET",
             headers: {
               Authorization: `Bearer ${token}`,
@@ -73,7 +74,7 @@ const DeliveryDetails = () => {
       let token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5001/api/orders/${activeOrder._id}`,
+        `${API_BASE}/api/orders/${activeOrder._id}`,
         {
           method: "PUT",
           headers: {

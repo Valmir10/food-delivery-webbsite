@@ -2,6 +2,7 @@
 
 import React, { createContext, useReducer, useContext, useEffect } from "react";
 import axios from "axios";
+import { API_BASE } from "../api.js";
 
 // Utility to safely parse JSON
 const safeParse = (value, defaultValue) => {
@@ -156,7 +157,7 @@ export const OrderProvider = ({ children, isLoggedIn }) => {
 
       try {
         const localCart = safeParse(localStorage.getItem("cart"), []);
-        const response = await axios.get("http://localhost:5001/api/cart", {
+        const response = await axios.get(`${API_BASE}/api/cart`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -175,7 +176,7 @@ export const OrderProvider = ({ children, isLoggedIn }) => {
         });
 
         await axios.put(
-          "http://localhost:5001/api/cart",
+          `${API_BASE}/api/cart`,
           { cart: mergedCart },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -196,7 +197,7 @@ export const OrderProvider = ({ children, isLoggedIn }) => {
 
     try {
       await axios.put(
-        "http://localhost:5001/api/cart",
+        `${API_BASE}/api/cart`,
         { cart: newCart },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -216,7 +217,7 @@ export const OrderProvider = ({ children, isLoggedIn }) => {
       if (!token || !isLoggedIn) return;
 
       try {
-        const response = await axios.get("http://localhost:5001/api/cart", {
+        const response = await axios.get(`${API_BASE}/api/cart`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
