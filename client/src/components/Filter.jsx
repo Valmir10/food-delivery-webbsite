@@ -18,7 +18,7 @@ const Filter = ({ onCategorySelect, selectedCategory }) => {
   return (
     <div className="filter-section-container">
       <div className="explore-menu-p">Explore our menu</div>
-      <div className="explore-menu-p-2">
+      <div className="explore-menu-p-2"> 
         <p>
           Dive into our menu and discover a world of flavors crafted to delight.
           From comforting classics to exciting new tastes, <br></br> we’re here

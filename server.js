@@ -41,13 +41,16 @@ app.use(
   })
 );
 
+// configure API
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+//Connect database to server
 mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MONGODB_URI)
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.log("❌ MongoDB connection error:", err));
+// .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 //  Generate token
 const generateToken = (user) => {

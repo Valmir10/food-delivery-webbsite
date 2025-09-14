@@ -28,7 +28,7 @@ const HomePage = () => {
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
-    setIsFilterActive(true);
+    setIsFilterActive(true); 
     scrollToMenu();
   };
 
