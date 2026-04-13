@@ -1,17 +1,22 @@
 .menu-section-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px clamp(16px, 4vw, 60px) 80px;
+  width: 100%;
+  padding: 40px 4% 80px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .menu-container-text p {
   font-size: clamp(24px, 3vw, 32px);
   font-weight: 700;
   margin-bottom: 28px;
+  text-align: center;
 }
 
-.menu-loading, .menu-error, .no-products {
+.menu-loading,
+.menu-error,
+.no-products {
   text-align: center;
   padding: 60px 20px;
   font-size: 16px;
@@ -29,13 +34,21 @@
   transition: opacity 0.2s;
 }
 
-.delete-icon-container-menu:hover { opacity: 1; }
-.delete-icon-container-menu img { width: 100%; height: 100%; }
-.delete-filter-tooltip { display: none; }
+.delete-icon-container-menu:hover {
+  opacity: 1;
+}
+.delete-icon-container-menu img {
+  width: 100%;
+  height: 100%;
+}
+.delete-filter-tooltip {
+  display: none;
+}
 
 .menu-products-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 48px;
 }
 
@@ -44,8 +57,10 @@
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   width: 100%;
   max-width: 280px;
   flex-shrink: 0;
@@ -53,7 +68,7 @@
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .product-card-image {
@@ -122,7 +137,8 @@
   gap: 6px;
 }
 
-.add-quantity-container, .add-minus-container {
+.add-quantity-container,
+.add-minus-container {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -146,9 +162,15 @@
   background: #f8d7da;
 }
 
-.add-quantity-container:hover { background: #e8e4de; }
-.add-quantity-container.active:hover { background: #c3e6cb; }
-.add-minus-container:hover { background: #f1c0c5; }
+.add-quantity-container:hover {
+  background: #e8e4de;
+}
+.add-quantity-container.active:hover {
+  background: #c3e6cb;
+}
+.add-minus-container:hover {
+  background: #f1c0c5;
+}
 
 .add-container p {
   font-size: 18px;
@@ -167,6 +189,10 @@
 }
 
 @media (max-width: 480px) {
-  .product-card { max-width: 100%; }
-  .product-card-image { height: 200px; }
+  .product-card {
+    max-width: 100%;
+  }
+  .product-card-image {
+    height: 200px;
+  }
 }

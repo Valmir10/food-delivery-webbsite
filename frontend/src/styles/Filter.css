@@ -1,13 +1,13 @@
 .filter-section-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px clamp(16px, 4vw, 60px);
+  width: 100%;
+  padding: 40px 4%;
 }
 
 .explore-menu-p {
   font-size: clamp(24px, 3vw, 32px);
   font-weight: 700;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .explore-menu-p-2 p {
@@ -15,6 +15,7 @@
   color: #777;
   margin-bottom: 28px;
   line-height: 1.5;
+  text-align: center;
 }
 
 .filter-product-container {
@@ -26,9 +27,13 @@
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+
+  justify-content: center;
 }
 
-.filter-product-container::-webkit-scrollbar { display: none; }
+.filter-product-container::-webkit-scrollbar {
+  display: none;
+}
 
 .product-container {
   display: flex;
@@ -76,5 +81,7 @@
     padding-left: 16px;
   }
 
-  .product-container { min-width: 80px; }
+  .product-container {
+    min-width: 80px;
+  }
 }
