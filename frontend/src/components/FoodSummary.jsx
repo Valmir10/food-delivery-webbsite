@@ -6,18 +6,6 @@ import exclamationImage from "../images/exclamation.png";
 import deleteIcon from "../images/cancel.png";
 import Alert from "./Alert.jsx";
 
-const imageModules = import.meta.glob("../images/*", {
-  eager: true,
-  import: "default",
-});
-
-const productImageMap = Object.fromEntries(
-  Object.entries(imageModules).map(([path, url]) => {
-    const filename = path.split("/").pop();
-    return [filename, url];
-  }),
-);
-
 const FoodSummary = () => {
   const { cart, update } = useCartContext();
   const [alertMessage, setAlertMessage] = useState("");
@@ -47,8 +35,7 @@ const FoodSummary = () => {
 
   const getImageSrc = (item) => {
     if (USE_MOCK) {
-      const filename = item.image_url?.replace("/images/", "");
-      return productImageMap[filename] || exclamationImage;
+      return import.meta.env.BASE_URL + (item.image_url || "").replace(/^\//, "");
     }
     return `${API_BASE}${item.image_url}`;
   };

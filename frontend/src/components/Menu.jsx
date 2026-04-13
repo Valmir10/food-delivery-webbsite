@@ -51,8 +51,7 @@ const Menu = ({ selectedCategory, resetCategory, isFilterActive }) => {
 
   const getImageSrc = (product) => {
     if (USE_MOCK) {
-      const filename = product.image_url.replace("/images/", "");
-      return productImageMap[filename] || productImageMap["exclamation.png"];
+      return import.meta.env.BASE_URL + product.image_url.replace(/^\//, "");
     }
     return `${API_BASE}${product.image_url}`;
   };
