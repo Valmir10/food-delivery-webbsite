@@ -1,275 +1,104 @@
 .price-summary-container {
-  width: 100%;
-  height: 50vh;
-
   display: flex;
-  flex-direction: row;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
-/*PROMO-CODE*/
-
-.promo-code-container {
-  height: 100%;
-  width: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+.promo-code-container { flex: 1; min-width: 280px; }
 
 .promo-code-content {
-  width: 80%;
-  height: 20%;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.promo-code-text-container {
-  width: 100%;
-  height: 35%;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
 .promo-code-text-container p {
-  font-family: "Roboto", system-ui;
-  margin-left: 1%;
-  width: 100%;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 14px;
 }
 
 .promo-code-input-container {
   display: flex;
-  flex-direction: row;
-  height: 75%;
-  width: 100%;
-  border-radius: 5px;
+  gap: 8px;
 }
 
 .promo-code-input-container input {
-  width: 70%;
-  height: 100%;
-  background-color: rgb(217, 215, 215);
+  flex: 1;
+  height: 44px;
+  border: 1.5px solid #e0dcd6;
+  border-radius: 10px;
+  padding: 0 14px;
+  font-size: 14px;
   outline: none;
-  border: none;
-  font-size: 15px;
-  padding-left: 10px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  font-family: "Inter", sans-serif;
+  transition: border-color 0.2s;
 }
 
-.promo-code-input-content ::placeholder {
-  font-size: 14px;
-}
+.promo-code-input-container input:focus { border-color: #e85d04; }
 
 .submit-button {
-  width: 30%;
-  height: 100%;
+  height: 44px;
+  padding: 0 24px;
+  background: #1a1a1a;
   color: white;
-  background-color: black;
   border: none;
-  cursor: pointer;
-  transition: background-color 1s, color 1s;
+  border-radius: 10px;
+  font-weight: 600;
   font-size: 14px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  transition: background 0.2s;
 }
 
-.submit-button:hover {
-  transition: 0.5s;
-  opacity: 0.8;
-}
+.submit-button:hover { background: #333; }
 
-.submit-button:active {
-  opacity: 0.5;
-  transition: opacity 0.3s;
-}
-
-/*PRICE-CONTENT*/
-
-.price-content-container {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Roboto", system-ui;
-}
+.price-content-container { flex: 1; min-width: 280px; }
 
 .price-content {
-  width: 70%;
-  height: 80%;
-
-  display: flex;
-  flex-direction: column;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
-.cart-totals-p-container {
-  width: 100%;
-  height: 20%;
+.cart-totals-p-container h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
-.subtotal-p-container {
-  height: 20%;
-  width: 100%;
+.subtotal-p-container, .delivery-fee-p-container, .total-p-container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  border-bottom: solid 0.5px rgb(180, 177, 177);
+  padding: 10px 0;
 }
 
-.delivery-fee-p-container {
-  height: 20%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: solid 0.5px rgb(180, 177, 177);
-}
+.subtotal-p-container p, .delivery-fee-p-container p { font-size: 15px; color: #666; }
 
 .total-p-container {
-  height: 20%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: solid 0.5px rgb(180, 177, 177);
+  border-top: 2px solid #f0ede8;
+  margin-top: 8px;
+  padding-top: 14px;
 }
 
-.to-payment-button {
-  height: 20%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-}
+.total-p-container p { font-size: 18px; font-weight: 700; }
+
+.to-payment-button { margin-top: 20px; }
 
 .to-payment-button button {
-  height: 80%;
-  width: 50%;
-  background-color: orange;
+  width: 100%;
+  height: 48px;
+  background: #e85d04;
   color: white;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 1s, color 1s;
-  font-size: 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background 0.2s;
 }
 
-.to-payment-button button:hover {
-  transition: 0.5s;
-  opacity: 0.8;
-}
+.to-payment-button button:hover { background: #d4520a; }
 
-.to-payment-button button:active {
-  opacity: 0.5;
-  transition: opacity 0.3s;
-}
-
-@media screen and (max-width: 900px) and (max-height: 1600px) {
-  .promo-code-content {
-    height: 15%;
-  }
-
-  .price-content {
-    height: 70%;
-  }
-
-  .to-payment-button button {
-    width: 70%;
-    height: 70%;
-  }
-}
-
-@media screen and (max-width: 720px) and (max-height: 1080px) {
-  .promo-code-content {
-    height: 17%;
-  }
-
-  .price-content {
-    height: 75%;
-  }
-}
-
-@media screen and (max-width: 600px) and (max-height: 960px) {
-  .promo-code-content {
-    height: 25%;
-    width: 85%;
-  }
-
-  .promo-code-text-container p {
-    font-size: 14px;
-    width: 100%;
-    margin-left: 0%;
-  }
-
-  .promo-code-input-container {
-    height: 50%;
-  }
-
-  .price-content {
-    width: 80%;
-  }
-}
-
-@media screen and (max-width: 480px) and (max-height: 850px),
-  screen and (max-width: 412px) and (max-height: 915px),
-  screen and (max-width: 428px) and (max-height: 926px),
-  screen and (max-width: 430px) and (max-height: 932px) {
-  .price-summary-container {
-    display: flex !important;
-    flex-direction: column;
-    height: auto;
-    min-height: 50vh;
-  }
-
-  .promo-code-container {
-    height: 35vh !important;
-    width: 100vw !important;
-  }
-
-  .price-content-container {
-    height: 75vh !important;
-    width: 100vw !important;
-  }
-
-  .promo-code-content {
-    height: 35%;
-  }
-
-  .to-payment-button button {
-    width: 70%;
-    height: 60%;
-  }
-}
-
-@media screen and (max-width: 414px) and (max-height: 750px) {
-  .to-payment-button button {
-    width: 70%;
-    height: 60%;
-  }
-}
-
-@media screen and (max-width: 375px) and (max-height: 640px) {
-  .price-content {
-    height: 85%;
-  }
-  .promo-code-container {
-    height: 35vh !important;
-  }
-
-  .promo-code-content {
-    height: 50%;
-  }
-
-  .price-content-container {
-    height: 75vh !important;
-  }
-
-  .to-payment-button button {
-    width: 70%;
-    height: 60%;
-  }
+@media (max-width: 600px) {
+  .price-summary-container { flex-direction: column; }
 }

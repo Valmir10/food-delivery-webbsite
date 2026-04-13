@@ -38,7 +38,16 @@ const login = async (email, password) => {
   return token;
 };
 
+const getProfile = async (userId) => {
+  const user = await usersRepository.getUserById(userId);
+  if (!user) {
+    throw new Error("User not found");
+  }
+  return user;
+};
+
 module.exports = {
   register,
   login,
+  getProfile,
 };

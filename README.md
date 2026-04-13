@@ -1,72 +1,102 @@
-# 🍔 Food Delivery Website
+# UrbanEats - Food Delivery Website
 
-A modern food delivery website built with **HTML**, **CSS**, **React**, and a backend powered by **Node.js**, **Express**, and **MongoDB**.
+A full-stack food delivery web application built with React and Express.
 
----
+## Features
 
-## 🚀 Getting Started
+- **Browse Menu** - 32 products across 8 categories (Pizza, Pasta, Asian, Mexican, Burgers, Wraps, Vegan, Mediterranean)
+- **Category Slider** - Responsive pagination: all products on desktop, 2 per page on tablet, 1 on mobile with dot navigation
+- **Shopping Cart** - Add, update quantity, and remove items with real-time cart badge
+- **Checkout Flow** - Cart summary -> Payment -> Order confirmation
+- **Authentication** - Register, login, and JWT-based session management
+- **User Profile** - View account info and last 10 orders
+- **GitHub Pages Mode** - Works without backend using seed data and localStorage
 
-Follow these simple steps to set up and run the project locally.
+## Tech Stack
 
-### 1️⃣ Clone the Repository
+**Frontend:** React 19, Vite, React Router, Context API  
+**Backend:** Node.js, Express 5, SQLite3, JWT, Bcrypt  
+**CI/CD:** GitHub Actions (PR testing + GitHub Pages deployment)
 
-Start by downloading or cloning the repository to your local machine.
+## Getting Started
 
-```sh
-git clone <repository-url>
-```
+### Prerequisites
 
-Then open the project folder in **VS Code** (or any code editor of your choice).
+- Node.js 18+
 
----
+### Run locally
 
-### 2️⃣ Install Dependencies and Start the Backend
-
-In your terminal (inside the project root), run:
-
-```sh
+```bash
+# Backend
+cd backend
+echo "JWT_SECRET=your-secret-key" > .env
 npm install
-```
-
-Then start the backend server:
-
-```sh
 node server.js
-```
+# Runs on http://localhost:3001
 
-✅ The backend is now running.
-
----
-
-### 3️⃣ Start the Frontend
-
-Open a **new terminal** and run the following:
-
-```sh
-cd client
+# Frontend (in a separate terminal)
+cd frontend
 npm install
 npm run dev
+# Runs on http://localhost:5173
 ```
 
-✅ The frontend will now be running on:
+### Run in mock mode (no backend needed)
+
+```bash
+cd frontend
+VITE_USE_MOCK=true npm run dev
+```
+
+## Project Structure
 
 ```
-http://localhost:5173/food-delivery-website/
+├── frontend/              # React + Vite
+│   ├── src/
+│   │   ├── components/    # Reusable UI components
+│   │   ├── pages/         # Route pages
+│   │   ├── context/       # React Context (Auth, Cart)
+│   │   ├── hooks/         # Custom hooks
+│   │   ├── services/      # API client layer (with mock support)
+│   │   ├── data/          # Seed data for GitHub Pages mode
+│   │   ├── config/        # API configuration
+│   │   ├── styles/        # Component CSS
+│   │   └── images/        # Static assets
+│   └── package.json
+├── backend/               # Node.js + Express API
+│   ├── controllers/       # Request handlers
+│   ├── services/          # Business logic
+│   ├── repositories/      # Database queries
+│   ├── routes/            # API endpoints
+│   ├── middleware/         # JWT auth middleware
+│   ├── db/                # SQLite database + schemas
+│   ├── __tests__/         # Jest tests
+│   └── package.json
+└── .github/workflows/     # CI/CD pipelines
+    ├── ci.yml             # PR testing (lint + build + tests)
+    └── deploy.yml         # GitHub Pages deployment
 ```
 
----
+## API Endpoints
 
-## 🛠 Built With
+| Method | Route | Auth | Description |
+|--------|-------|------|-------------|
+| GET | /products | No | Get all products |
+| POST | /auth/register | No | Create account |
+| POST | /auth/login | No | Login, returns JWT |
+| GET | /auth/me | Yes | Get user profile |
+| GET | /cart | Yes | Get cart items |
+| POST | /cart | Yes | Add item to cart |
+| PUT | /cart | Yes | Update item quantity |
+| DELETE | /cart | Yes | Remove item from cart |
+| GET | /orders | Yes | Get user orders |
+| POST | /orders | Yes | Checkout (cart to order) |
 
-- 💻 **HTML & CSS** – For structure and styling
-- ⚛️ **React** – For building the user interface
-- ⚡️ **Vite** – For fast development
-- 🛠 **Express** – For backend logic
-- 🍃 **MongoDB** – For storing data (like orders, menu items, etc.)
-- 🌐 **Node.js** – As the backend runtime
+## CI/CD
 
----
+- **Pull Requests** - Runs lint, build, and backend tests automatically
+- **Push to main** - Builds frontend in mock mode and deploys to GitHub Pages
 
-## 📄 License
+## License
 
-This project is open-source and licensed under the **MIT License**.
+This project is open-source and licensed under the MIT License.

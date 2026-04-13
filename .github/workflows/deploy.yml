@@ -18,37 +18,28 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Use Node.js
+      - name: Use Node.js 18
         uses: actions/setup-node@v4
         with:
           node-version: "18"
 
       - name: Install deps
-        working-directory: client
+        working-directory: frontend
         run: npm ci
 
-      - name: Create .env.production for Vite
-        working-directory: client
-        run: |
-          echo "VITE_API_URL=https://food-delivery-webbsite-production.up.railway.app" > .env.production
-
-      - name: Debug .env.production contents
-        working-directory: client
-        run: |
-          echo ">>>> Innehåll i client/.env.production:"
-          cat .env.production || echo "(kunde inte hitta filen)"
-
-      - name: Build
-        working-directory: client
+      - name: Build with mock mode for GitHub Pages
+        working-directory: frontend
+        env:
+          VITE_USE_MOCK: "true"
         run: npm run build
 
       - name: Copy index to 404
-        run: cp client/dist/index.html client/dist/404.html
+        run: cp frontend/dist/index.html frontend/dist/404.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: client/dist
+          publish_dir: frontend/dist
           publish_branch: github-pages
           force_orphan: true

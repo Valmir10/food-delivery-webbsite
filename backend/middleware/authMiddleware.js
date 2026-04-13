@@ -8,7 +8,6 @@ if (!JWT_SECRET) {
 
 const requireAuth = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  console.log("AUTH HEADER:", authHeader);
 
   if (!authHeader) {
     return res.status(401).json({ message: "Missing token" });
@@ -18,12 +17,9 @@ const requireAuth = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log("DECODED USER:", decoded);
-
     req.user = decoded;
     next();
   } catch (err) {
-    console.error("JWT ERROR:", err);
     return res.status(401).json({ message: "Invalid token" });
   }
 };

@@ -1,14 +1,14 @@
 const db = require("../db/database");
 
 // Create a new order
-const createOrder = (userId, totalPrice, expiresAt) => {
+const createOrder = (userId, totalPrice) => {
   return new Promise((resolve, reject) => {
     const sql = `
-      INSERT INTO orders (user_id, total_price, status, expires_at)
-      VALUES (?, ?, 'active', ?)
+      INSERT INTO orders (user_id, total_price, status)
+      VALUES (?, ?, 'completed')
     `;
 
-    db.run(sql, [userId, totalPrice, expiresAt], function (err) {
+    db.run(sql, [userId, totalPrice], function (err) {
       if (err) reject(err);
       else resolve(this.lastID);
     });

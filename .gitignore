@@ -2,27 +2,17 @@
 logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
 node_modules
 dist
-dist-ssr
-*.local
 
-# Environment-files
+# Environment files
 .env
-.env.production
-.env.*
+.env.local
+.env.*.local
 
-# ignore alla env-files in client folder
-client/.env
-client/.env.*
-
-# do not ignore
-!client/.env.production
+# Database
+*.sqlite
 
 # Editor directories and files
 .vscode/*

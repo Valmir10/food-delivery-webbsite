@@ -4,6 +4,7 @@ import {
   addToCart,
   updateCartItem,
   removeFromCart,
+  clearCart as clearCartService,
 } from "../services/cartService";
 
 export const useCart = (isLoggedIn) => {
@@ -43,11 +44,17 @@ export const useCart = (isLoggedIn) => {
     await loadCart();
   };
 
+  const clear = async () => {
+    await clearCartService();
+    setCart([]);
+  };
+
   return {
     cart,
     loading,
     add,
     update,
+    clear,
     reload: loadCart,
   };
 };
